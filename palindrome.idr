@@ -1,7 +1,7 @@
 module Demo
 
 palindrome : String -> Bool
-palindrome xs = xs == (reverse xs)
+palindrome xs = (toLower xs) == (reverse (toLower xs))
 
 test_palindrome : String
 test_palindrome =  if palindrome "pullup"
