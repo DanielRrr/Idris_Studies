@@ -1,14 +1,13 @@
 plus_n_zero : (n : Nat) -> n + 0 = n
 plus_n_zero Z = Refl
-plus_n_zero (S n) = cong S (plus_n_zero n)
+plus_n_zero (S n) = rewrite plus_n_zero n in Refl
 
 plus_n_succ : (n, k : Nat) -> n + (S k) = S (n + k)
-plus_n_succ Z (S n) = Refl
-plus_n_succ n (S m) = cong S (plus_n_succ n m)
+plus_n_succ n k = sym (plusSuccRightSucc n k)
 
 plus_assoc : (a, b, c : Nat) -> a + (b + c) = (a + b) + c
 plus_assoc Z m p = Refl
-plus_assoc (S n) m p = cong S (plus_assoc n m p)
+plus_assoc (S n) m p = rewrite plus_assoc n m p in Refl
 
 succ_inj : (n, m : Nat) -> S n = S m -> n = m
 
