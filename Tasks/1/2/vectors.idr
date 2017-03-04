@@ -29,7 +29,7 @@ incDimFirst xs = 0 :: xs
 
 -- increase vector dimension, adding 0 as the last coordinate
 incDimLast : Vect n Double -> Vect (n+1) Double
-incDimLast xs = (reverse 0 :: xs)
+incDimLast xs = reverse (0 :: xs)
 
 -- project vector to the space given by vector of indices
 -- use function `map`
