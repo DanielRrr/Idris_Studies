@@ -1,5 +1,3 @@
-module Demo
-
 plus_n_zero : (n : Nat) -> n + 0 = n
 
 plus_n_succ : (n, k : Nat) -> n + (S k) = S (n + k)
