@@ -21,9 +21,9 @@ sum_fl (x::xs) = x + head (reverse' xs)
 
 ||| Returns length of the given list if there exists
 ||| 0 in there or returns (-1) otherwise
-len_withZero : List Integer -> Int
--- Use `filter` and `length`.
 
+len_withZero : List Integer -> Int
+len_withZero xs = if (length (filter (0 == ) xs) == 0) then (-1) else length xs
 
 
 
@@ -40,7 +40,7 @@ len_withZero : List Integer -> Int
 -}
 
 data Calculation : Type where
- -- ???
+
 
 process_list : Calculation -> (l: List Integer) -> Maybe Integer
 
