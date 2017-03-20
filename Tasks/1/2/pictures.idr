@@ -41,7 +41,23 @@ test_picture = Combine (Translate 5 5 rectangle)
 
 -- Implement interactively
 picture_area : Picture -> Double
+picture_area (Primitive shape) = area shape
+picture_area (Combine shape1 shape2) = (picture_area shape1) + (picture_area shape2)
+picture_area (Rotate x shape) = picture_area shape
+picture_area (Translate x y shape) = picture_area shape
 
+maxMaybe : Ord a => Maybe a -> Maybe a -> Maybe a
+maxMaybe Nothing my = my
+maxMaybe mx Nothing = mx
+maxMaybe (Just x) (Just y) = ifThenElse (x > y) (Just x) (Just y)
 
 ||| Returns the area of the biggest triangle in a picture
 biggestTriangle : Picture -> Maybe Double
+biggestTriangle (Primitive shape) =
+    case shape of
+         (Triangle x y) => Just (x * y / 2)
+         (Rectangle x y) => Nothing
+         (Circle r) => Nothing
+biggestTriangle (Combine shape1 shape2) = maxMaybe (biggestTriangle shape1) (biggestTriangle shape2)
+biggestTriangle (Rotate x shape) = biggestTriangle shape
+biggestTriangle (Translate x y shape) = biggestTriangle 

@@ -48,12 +48,15 @@ test1 = project [1,2,3,4] [FS FZ, FZ, FS (FS FZ)] == [2,1,3]
 
 -- matrix transposition
 transpose_mat : Vect m (Vect n elem) -> Vect n (Vect m elem)
--- use zipWith
+
 
 -- matrix addition and multiplication
 addMatrix : Num numType => Vect rows (Vect cols numType)
                            -> Vect rows (Vect cols numType)
                            -> Vect rows (Vect cols numType)
+addMatrix [] [] = []
+addMatrix (x :: xs) (y :: ys) = (zipWith (+) x y) :: addMatrix xs ys
+
 
 multMatrix : Num numType => Vect n (Vect m numType)
                             -> Vect m (Vect p numType)
